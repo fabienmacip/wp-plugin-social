@@ -8,3 +8,4 @@ developer.wordpress.org/resource/dashicons/#menu
 
 Copier le CSS de l'icône du plugin, directement dans le CSS additionnel du thème
 
+# Ajouter le plugin Font Awesome

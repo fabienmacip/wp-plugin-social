@@ -119,11 +119,69 @@ function social_media_page(){ ?>
 <?php }
 
 
-
-
 /* END - CREATION DE LA PAGE ADMIN : FORMULAIRE HTML */
 
 
+/* START - CREATION DE LA PAGE FRONT : HTML */
+
+function social_media_icons_front($social_media_icons){
+  global $post;
+  
+  $link = get_permalink($post->ID);
+  $link = esc_url($link);
+
+  $html = "<div class='container row'>
+    <div class='h3'>Partager sur :</div>";
+
+  if(get_option("social-media-facebook") == "activate") {
+    $html = $html . "
+      <div class='col-1'>
+      <a target='_blanck' href='https://www.facebook.com/sharer/sharer.php?u=".$link."'>
+      <i class='fab fa-facebook-square fa-2x'></i>
+      </a>
+      </div>
+      ";
+    }
+
+    if(get_option("social-media-whatsapp") == "activate") {
+      $html = $html . "
+        <div class='col-1'>
+          <a target='_blanck' href='tel:+33611223344'>
+            <i class='fab fa-whatsapp-square fa-2x'></i>
+          </a>
+        </div>
+      ";
+    }
+  
+    if(get_option("social-media-linkedin") == "activate") {
+      $html = $html . "
+        <div class='col-1'>
+          <a target='_blanck' href='http://www.linkedin.com/shareArticle?url=".$link."'>
+            <i class='fab fa-linkedin fa-2x'></i>
+          </a>
+        </div>
+      ";
+    }
+
+    if(get_option("social-media-twitter") == "activate") {
+      $html = $html . "
+        <div class='col-1'>
+          <a target='_blanck' href='http://www.twitter.com/share?url=".$link."'>
+            <i class='fab fa-twitter-square fa-2x'></i>
+          </a>
+        </div>
+      ";
+    }
+
+    $social_media_icons = $social_media_icons . $html;
+
+    return $social_media_icons;
+
+  }
+  
+  add_filter("the_content","social_media_icons_front");
+  
+  /* END - CREATION DE LA PAGE FRONT : HTML */
 
 
 
